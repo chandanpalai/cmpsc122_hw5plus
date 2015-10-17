@@ -55,11 +55,10 @@ Computation::Computation( int id )
     for (int i=0; i < bursts; i++)
     {
         usages[i] = 200 + rand() % 120;
-	nextRequest[i] = &disk;	// some disk activity
+		nextRequest[i] = &disk;	// some disk activity
     }
     nextRequest[bursts-1] = NULL;	// all done!
 }
-
 Download::Download( int id )
 {
     myId = id;
@@ -74,7 +73,6 @@ Download::Download( int id )
     }
     nextRequest[bursts-1] = NULL;	// all done!
 }
-
 Interact::Interact( int id )
 {
     myId = id;
@@ -82,7 +80,7 @@ Interact::Interact( int id )
     for (int i=0; i < bursts; i++)
     {
         usages[i] = 30 + rand() % 20;
-	nextRequest[i] = &console;	// work with console
+		nextRequest[i] = &console;	// work with console
     }
     nextRequest[bursts-1] = NULL;	// all done!
 }

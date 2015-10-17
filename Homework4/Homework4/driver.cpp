@@ -21,4 +21,3 @@ int main()
 	displayHistory( tasks, 4, 0, 3000 );
    }
 }
-

@@ -27,37 +27,30 @@ class Process
 	    remainingTime = usages[0];
 	    log.clear();	// empty the log
 	}
-
 	void addLog( int time, char state )
 	{
 	    log.pushBack( myId, time, state );
 	}
-
 	ProcList &getLog()
 	{
 	    return log;		// get summarized results at end
 	}
-
 	virtual bool isInteractive()
         {
 	    return false;	// assume a background job
 	}
-
 	void run( int &, int, Device *& );
 };
-
 class Computation : public Process
 {
     public:
 	Computation( int id );
 };
-
 class Download : public Process
 {
     public:
 	Download( int id );
 };
-
 class Interact: public Process
 {
     public:
