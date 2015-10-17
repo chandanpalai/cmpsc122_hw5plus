@@ -21,42 +21,34 @@ class Process
 	ProcList log;
 
     public:
-	void restart()	// start at the very beginning
-	{
+	void restart() {
 	    currentCycle = 0;
 	    remainingTime = usages[0];
 	    log.clear();	// empty the log
 	}
-	void addLog( int time, char state )
-	{
+	void addLog( int time, char state ) {
 	    log.pushBack( myId, time, state );
 	}
-	ProcList &getLog()
-	{
+	ProcList &getLog() {
 	    return log;		// get summarized results at end
 	}
-	virtual bool isInteractive()
-        {
+	virtual bool isInteractive() {
 	    return false;	// assume a background job
 	}
 	void run( int &, int, Device *& );
 };
-class Computation : public Process
-{
+class Computation : public Process {
     public:
 	Computation( int id );
 };
-class Download : public Process
-{
+class Download : public Process {
     public:
 	Download( int id );
 };
-class Interact: public Process
-{
+class Interact: public Process {
     public:
 	Interact( int id );
-	bool isInteractive()
-	{
+	bool isInteractive() {
 	    return true;
 	}
 };	

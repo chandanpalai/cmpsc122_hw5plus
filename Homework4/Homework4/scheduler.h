@@ -52,7 +52,35 @@ class Priority : public Scheduler {
 	Priority() { name="Priority"; }
 
 	void addProcess( int procId ) {
+		int id;
+		char state;
+		ProcIterator focus = readySet.begin();
 
+		if (focus.process() == NULL) {//if the readySet is empty
+			readySet.pushBack(procId, 0, 'X');
+		}
+		else if (focus.process() < procId) { //if procId is the largest
+			readySet.pushBack(procId, 0, 'X');
+			while (focus.process() != procId ) {
+				readySet.popFront(id, state);
+				readySet.pushBack(id, 0, state);
+				focus = readySet.begin();
+			}
+		}
+		else { //insert it based on id
+			int firstId = focus.process(); //keep track of whats in front
+			while (focus.process() > procId) {//move all those larger than procId to the back
+				readySet.popFront(id, state);
+				readySet.pushBack(id, 0, state);
+				focus = readySet.begin();
+			}
+			readySet.pushBack(procId, 0, 'X');//add procId to the back
+			while (focus.process() != firstId) {//finally move all those less than procId to the back
+				readySet.popFront(id, state);
+				readySet.pushBack(id, 0, state);
+				focus = readySet.begin();
+			}
+		}
 	}
 };
 
@@ -60,7 +88,8 @@ class Preempt : public Priority {
     public:
 	Preempt() { name="Preemptive Priority"; }
 	
-	int allowance() {
-
+	int allowance() {//look thru future for first element with a higher id and set allowance to the time difference
+		ProcIterator search = future.begin();
+		while(search.process() < )
 	}
 };

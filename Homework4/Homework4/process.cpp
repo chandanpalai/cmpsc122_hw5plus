@@ -16,8 +16,8 @@
 //  Also:  The history log for this Process will record what is known
 //      at this time
 
-void Process::run( int &clock, int allowance, Device *&next )
-{/* old code below:
+void Process::run( int &clock, int allowance, Device *&next ) {
+/* old code below:
 	addLog(clock, 'X');
 	if (allowance >= remainingTime) {
 		clock += remainingTime;
@@ -34,7 +34,7 @@ void Process::run( int &clock, int allowance, Device *&next )
 		addLog(clock, 'Q');
 	else
 		addLog(clock, '-');
- */
+*/
 }
 
 /* old constructor for comparison:
