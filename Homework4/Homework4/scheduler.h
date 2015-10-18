@@ -24,7 +24,7 @@ class Scheduler {
 	void chooseProcess( int &procId ) {
 	    char hold;
 	    readySet.popFront( procId, hold ); }
-	virtual int allowance() {
+	virtual int allowance(int) {
 	    return 100000;	// a long time
 	}
 	virtual bool noneReady() {
@@ -88,8 +88,14 @@ class Preempt : public Priority {
     public:
 	Preempt() { name="Preemptive Priority"; }
 	
-	int allowance() {//look thru future for first element with a higher id and set allowance to the time difference
+	int allowance(int id) {//look thru future for first element with a higher id and set allowance to the time difference
 		ProcIterator search = future.begin();
-		while(search.process() < )
+		while (search.process() < id && search != future.end()) {
+			search.advance();
+		}
+		if (search.process() > id)
+			return search.time() - clock;
+		else
+			return 100000;
 	}
 };

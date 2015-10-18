@@ -1,9 +1,17 @@
 //Sam Lucas, CMPSC 122, Section 001
-
-//**requires adaption to pointer system
 #include "device.h"
 #include "scheduler.h"
 
+Device convert(char act) { //converts the char to equivilant device
+	if (act == 'D')
+		return disk;
+	else if (act == 'N')
+		return net;
+	else if (act == 'I')
+		return console;
+	else
+		return cpu;
+}
 void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	int pid;
 	int newpid;
@@ -16,7 +24,10 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	}
 
 	clock = 0;
-	int diskReady = 0;
+	cpu.restart();
+	disk.restart();
+	net.restart();
+	console.restart();
 
 	while (!future.empty() || !noneReady()) {
 		if (noneReady()) {
@@ -26,7 +37,8 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 		}
 		else {
 			chooseProcess(pid);
-			tasks[pid]->run(&clock, allowance(), nextAct);
+			Device *nextD = &convert(nextAct);
+			tasks[pid]->run(clock, allowance(pid), nextD);
 
 			while (!future.empty() && clock >= future.leadTime()) {
 				future.popFront(newpid, nextAct);
@@ -34,6 +46,8 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 			}
 			if (nextAct == 'X')
 				addProcess(pid);
-			else if (nextAct == 'D')
-				request(pid, clock, tasks, future);
-}	}	}
+			else
+				nextD->request(pid, clock, tasks, future);
+		}
+	}	
+}

@@ -17,24 +17,22 @@
 //      at this time
 
 void Process::run( int &clock, int allowance, Device *&next ) {
-/* old code below:
 	addLog(clock, 'X');
 	if (allowance >= remainingTime) {
 		clock += remainingTime;
-		next = nextState[currentCycle];
+		next = nextRequest[currentCycle];
 		currentCycle++;
 		remainingTime = usages[currentCycle];
 	}
 	else {
 		clock += allowance;
 		remainingTime -= allowance;
-		next = 'X';
+		*next = cpu;
 	}
-	if (next == 'Q')
+	if (next == NULL)
 		addLog(clock, 'Q');
 	else
 		addLog(clock, '-');
-*/
 }
 
 /* old constructor for comparison:

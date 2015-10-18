@@ -1,12 +1,9 @@
-// Device Driver Simulation
-// notified of when a request arrives, then determines when that action begins and ends.
-
 #include "proclist.h"
 
 class Process;
 class Device {
     private:
-		ProcList requests;
+		//ProcList requests;	<- not sure if needed
 		char action;		// letter used for display
 		int duration;		// how long the operation might take
 		int readyTime;		// when next operation may start
