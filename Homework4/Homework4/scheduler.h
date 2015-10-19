@@ -1,101 +1,103 @@
+//Sam Lucas, CMPSC 122, Section 001
 #include <iostream>
-#include "histo.h"
 using namespace std;
-
-// Process Scheduler
-// This represents the part of an operating system that manages processes,
-// choosing which to assign the CPU (assuming a single-processor system).
-// It will maintain a collection of processes that are currently ready
-// to use the CPU, and then choose which to run next.
-//
-// The time on the system clock is not required for this object,
-// so all of the time fields in the linked list objects are set to zero.
+#include "histo.h"//correct
 
 class Scheduler {
-    protected:
+protected:
 	ProcList readySet;	// set of processes ready to run
 	ProcList future;	// list of future events
 	int clock;		// current clock time for simulation
 	string name;		// name of the scheduling algorithm
-    public:
-	virtual void addProcess( int procId ) {
-	    readySet.pushBack( procId, 0, 'X');
+public:
+	virtual void addProcess(int procId)
+	{
+		readySet.pushBack(procId, 0, 'X');
 	}
-	void chooseProcess( int &procId ) {
-	    char hold;
-	    readySet.popFront( procId, hold ); }
-	virtual int allowance(int) {
-	    return 100000;	// a long time
+	void chooseProcess(int &procId)
+	{
+		char hold;
+		readySet.popFront(procId, hold);
 	}
-	virtual bool noneReady() {
-	    return readySet.empty();
+	virtual int allowance()
+	{
+		return 100000;	// a long time
 	}
-    void runScheduler( Process* [], int[], int );
+	virtual bool noneReady()
+	{
+		return readySet.empty();
+	}
+	void runScheduler(Process*[], int[], int);
 };
-
 class FCFS : public Scheduler {
-    public:
-	FCFS() { name="First Come First Served"; }
+public:
+	FCFS() { name = "First Come First Served"; }
 };
 
 class RoundRobin : public Scheduler {
-    public:
-	RoundRobin() { name="Round Robin"; }
-
+public:
+	RoundRobin() { name = "Round Robin"; }
 	int allowance() {
-	    return 70;
-	}   
+		return 70;
+	}
 };
-
 class Priority : public Scheduler {
-    public:
-	Priority() { name="Priority"; }
-
-	void addProcess( int procId ) {
-		int id;
-		char state;
-		ProcIterator focus = readySet.begin();
-
-		if (focus.process() == NULL) {//if the readySet is empty
-			readySet.pushBack(procId, 0, 'X');
+public:
+	Priority() { name = "Priority"; }
+	
+	void addProcess(int procId) {
+		ProcList newList;
+		ProcIterator iter = readySet.begin();
+		while (iter != readySet.end() && iter.process() > procId) {
+			newList.pushBack(iter.process(), iter.time(), iter.state());
+			iter.advance();
 		}
-		else if (focus.process() < procId) { //if procId is the largest
-			readySet.pushBack(procId, 0, 'X');
-			while (focus.process() != procId ) {
-				readySet.popFront(id, state);
-				readySet.pushBack(id, 0, state);
-				focus = readySet.begin();
-			}
+		newList.pushBack(procId, 0, 'X');
+		while (iter != readySet.end()) {
+			newList.pushBack(iter.process(), iter.time(), iter.state());
+			iter.advance();
 		}
-		else { //insert it based on id
-			int firstId = focus.process(); //keep track of whats in front
-			while (focus.process() > procId) {//move all those larger than procId to the back
-				readySet.popFront(id, state);
-				readySet.pushBack(id, 0, state);
-				focus = readySet.begin();
-			}
-			readySet.pushBack(procId, 0, 'X');//add procId to the back
-			while (focus.process() != firstId) {//finally move all those less than procId to the back
-				readySet.popFront(id, state);
-				readySet.pushBack(id, 0, state);
-				focus = readySet.begin();
-			}
-		}
+		readySet = newList;
 	}
 };
 
-class Preempt : public Priority {
-    public:
-	Preempt() { name="Preemptive Priority"; }
-	
-	int allowance(int id) {//look thru future for first element with a higher id and set allowance to the time difference
-		ProcIterator search = future.begin();
-		while (search.process() < id && search != future.end()) {
-			search.advance();
+class Preempt : public Priority { //rework
+public:
+	Preempt() { name = "Preemptive Priority"; }
+	int allowance() {
+		int tempId = 0;
+		int maxId = 0;
+		int headTime = 0;
+		ProcList newHead;
+		ProcIterator iter = readySet.begin();
+		while (iter != readySet.end()) {
+			tempId = iter.process();
+			if (tempId > maxId) {
+				maxId = tempId;
+				headTime = iter.time();
+			}
+			iter.advance();
 		}
-		if (search.process() > id)
-			return search.time() - clock;
-		else
-			return 100000;
+		iter = readySet.begin();
+		while (iter != readySet.end() && iter.process() != maxId) {
+			iter.advance();
+		}
+		if (iter != readySet.end()) {
+			newHead.pushBack(maxId, iter.time(), iter.state());
+		}
+
+		iter = readySet.begin();
+		int timesFound = 0; //check for duplicate ProcIds
+		while (iter != readySet.end()) {
+			if (iter.process() != maxId || timesFound > 0) {
+				newHead.pushBack(iter.process(), iter.time(), iter.state());
+			}
+			else {
+				timesFound++; //found head
+			}
+			iter.advance();
+		}
+		readySet = newHead;
+		return headTime;
 	}
 };

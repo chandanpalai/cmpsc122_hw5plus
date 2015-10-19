@@ -1,36 +1,29 @@
+//Sam Lucas, CMPSC 122, Section 001
 #include "proclist.h"
-#include <stdlib.h>
+#include <stdlib.h>//correct
 
-// A description of a process, executed in the process scheduling simulation
 class Device;
-class Process
-{
+class Process {
     protected:
 	int myId;		// an identifier for the larger picture
-
-	// A description of the process's total CPU needs
 	int bursts;		// total number of CPU bursts (<= 10)
-	int usages[10];		// lengths of each burst
-	Device *nextRequest[10];	// what to do after each burst
-
-	// A desription of what this process is doing now
-	int currentCycle;	// which burst is next ro run or continue
-	int remainingTime;	// how much time left on current burst
-
-	// A desription of what this process has done so far
+	int usages[10];
+	Device *nextRequest[10];
+	int currentCycle;
+	int remainingTime;
 	ProcList log;
 
     public:
 	void restart() {
 	    currentCycle = 0;
 	    remainingTime = usages[0];
-	    log.clear();	// empty the log
+	    log.clear();
 	}
 	void addLog( int time, char state ) {
 	    log.pushBack( myId, time, state );
 	}
 	ProcList &getLog() {
-	    return log;		// get summarized results at end
+	    return log;
 	}
 	virtual bool isInteractive() {
 	    return false;	// assume a background job
