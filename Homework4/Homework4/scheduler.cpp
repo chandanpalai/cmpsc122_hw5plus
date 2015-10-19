@@ -5,10 +5,11 @@
 void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	int pid;
 	int newpid;
+	char nextAct;
 	Device *nextD;
 
 	for (int i = 0; i < size; i++) {
-		future.insert(i, arrival[i], new Device('X', 0));
+		future.insert(i, arrival[i], 'X');
 		tasks[i]->restart();
 		tasks[i]->addLog(arrival[i], '-');
 	}
@@ -22,18 +23,19 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	while (!future.empty() || !noneReady()) {
 		if (noneReady()) {
 			clock = future.leadTime();
-			future.popFront(pid, nextD);
+			future.popFront(pid, nextAct);
 			addProcess(pid);
 		}
 		else {
 			chooseProcess(pid);
-			tasks[pid]->run(clock, allowance(pid), nextD);
+			tasks[pid]->run(clock, allowance(), nextD);
 
 			while (!future.empty() && clock >= future.leadTime()) {
-				future.popFront(newpid, nextD);
+				future.popFront(newpid, nextAct);
 				addProcess(newpid);
 			}
-			nextD->request(pid, clock, tasks, future);
+			if(nextD != NULL)
+				nextD->request(pid, clock, tasks, future);
 		}
 	}	
 }

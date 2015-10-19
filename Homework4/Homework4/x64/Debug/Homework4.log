@@ -1,126 +1,20 @@
-﻿Build started 10/18/2015 9:26:53 PM.
+﻿Build started 10/19/2015 3:41:38 PM.
      1>Project "C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\Homework4.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt device.cpp driver.cpp histo.cpp process.cpp proclist.cpp scheduler.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt device.cpp scheduler.cpp
          scheduler.cpp
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(16): error C2061: syntax error: identifier 'ProcList'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(4): error C2011: 'Device': 'class' type redefinition
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(4): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(22): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(22): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(26): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(60): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(60): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(63): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(63): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(65): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(66): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(66): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(73): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(74): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(74): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(77): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(77): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(79): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(80): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(80): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(11): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(11): error C2660: 'ProcList::insert': function does not take 2 arguments
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(17): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(17): error C2228: left of '.restart' must have class/struct/union
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(18): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(18): error C2228: left of '.restart' must have class/struct/union
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(19): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(19): error C2228: left of '.restart' must have class/struct/union
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(20): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(20): error C2228: left of '.restart' must have class/struct/union
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(36): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.cpp(36): error C2227: left of '->request' must point to class/struct/union/generic type
-         proclist.cpp
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(16): error C2061: syntax error: identifier 'ProcList'
-         process.cpp
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(16): error C2061: syntax error: identifier 'ProcList'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(4): error C2011: 'Device': 'class' type redefinition
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-         histo.cpp
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(16): error C2061: syntax error: identifier 'ProcList'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-         driver.cpp
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(16): error C2061: syntax error: identifier 'ProcList'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(22): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(22): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(26): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(60): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(60): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(63): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(63): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(65): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(66): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(66): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(73): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(74): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(74): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(77): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(77): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(79): error C2664: 'void ProcList::popFront(int &,Device *&)': cannot convert argument 2 from 'char' to 'Device *&'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(80): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\scheduler.h(80): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(4): error C2011: 'Device': 'class' type redefinition
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
          device.cpp
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(16): error C2061: syntax error: identifier 'ProcList'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(4): error C2011: 'Device': 'class' type redefinition
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(4): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): error C2664: 'void ProcList::pushBack(int,int,Device *)': cannot convert argument 3 from 'char' to 'Device *'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(30): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(10): error C2027: use of undefined type 'Device'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\process.h(5): note: see declaration of 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(11): error C2065: 'readyTime': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(12): error C2065: 'readyTime': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(12): error C2065: 'action': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(13): error C2065: 'readyTime': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(13): error C2065: 'duration': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(16): error C2065: 'action': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(17): error C2065: 'readyTime': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(17): error C2065: 'duration': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(19): error C2065: 'readyTime': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(20): error C2065: 'readyTime': undeclared identifier
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(23): error C2079: 'disk' uses undefined class 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(23): error C2371: 'disk': redefinition; different basic types
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(18): note: see declaration of 'disk'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(23): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(23): note: The initializer contains too many elements
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(24): error C2079: 'net' uses undefined class 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(24): error C2371: 'net': redefinition; different basic types
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(18): note: see declaration of 'net'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(24): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(24): note: The initializer contains too many elements
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(25): error C2079: 'console' uses undefined class 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(25): error C2371: 'console': redefinition; different basic types
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(18): note: see declaration of 'console'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(25): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(25): note: The initializer contains too many elements
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(26): error C2079: 'cpu' uses undefined class 'Device'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(26): error C2371: 'cpu': redefinition; different basic types
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.h(18): note: see declaration of 'cpu'
-     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(26): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
-         c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\device.cpp(26): note: The initializer contains too many elements
          Generating Code...
-     1>Done Building Project "C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\Homework4.vcxproj" (Build target(s)) -- FAILED.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.lib" /MACHINE:X64 x64\Debug\device.obj
+         x64\Debug\driver.obj
+         x64\Debug\histo.obj
+         x64\Debug\process.obj
+         x64\Debug\proclist.obj
+         x64\Debug\scheduler.obj
+         Homework4.vcxproj -> C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.exe
+     1>Done Building Project "C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\Homework4.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.77
+Time Elapsed 00:00:01.17

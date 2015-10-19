@@ -1,13 +1,17 @@
-//#include "proclist.h"
+//Sam Lucas, CMPSC 122, Section 001
+#include "proclist.h"//correct
+
+#ifndef DEVICE
+#define DEVICE
 
 class Process;
+class Scheduler;//???
 class Device {
     private:
-		//ProcList requests;	<- not sure if needed
-		char action;		// letter used for display
-		int duration;		// how long the operation might take
-		int readyTime;		// when next operation may start
-
+		//ProcList requests;	<- not sure if needed??
+		char action;
+		int duration;
+		int readyTime;	
     public:
 		Device( char a, int d ) : action(a), duration(d), readyTime(0) { }
 		void restart() {
@@ -15,4 +19,5 @@ class Device {
 		}
 		void request( int, int, Process* [], ProcList & );
 };
-extern Device disk, net, console, cpu; // extern meaning they are defined elsewhere (in the.cpp file)
+extern Device disk, net, console, cpu; //defined elsewhere
+#endif
