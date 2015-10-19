@@ -60,15 +60,15 @@ public:
 			readySet.pushBack(procId, 0, 'X');
 		else {
 			ProcList newList;
-			ProcIterator iter = readySet.begin();
-			while (iter != readySet.end() && iter.process() > procId) { 
-				newList.pushBack(iter.process(), iter.time(), iter.state());
-				iter.advance();
+			ProcIterator *iter = &readySet.begin();
+			while (iter != NULL && iter->process() > procId) { 
+				newList.pushBack(iter->process(), iter->time(), iter->state());
+				iter->advance();
 			}
 			newList.pushBack(procId, 0, 'X');
-			while (iter != readySet.end()) { //tried to replaced readySet.end() with NULL
-				newList.pushBack(iter.process(), iter.time(), iter.state());
-				iter.advance();
+			while (iter != NULL) {
+				newList.pushBack(iter->process(), iter->time(), iter->state());
+				iter->advance();
 			}
 			readySet = newList;
 		}

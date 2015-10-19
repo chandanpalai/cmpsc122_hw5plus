@@ -1,22 +1,15 @@
-﻿Build started 10/19/2015 5:16:37 PM.
+﻿Build started 10/19/2015 6:43:37 PM.
      1>Project "C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\Homework4.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\CL.exe /c /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt driver.cpp scheduler.cpp
          driver.cpp
+     1>c:\users\sam.samlenovopc\desktop\stuff\school\cmpsc 122\github\cmpsc122_hw4\homework4\homework4\driver.cpp : fatal error C1041: cannot open program database 'C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\x64\Debug\vc140.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS
          Generating Code...
          Compiling...
          scheduler.cpp
          Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.lib" /MACHINE:X64 x64\Debug\device.obj
-         x64\Debug\driver.obj
-         x64\Debug\histo.obj
-         x64\Debug\process.obj
-         x64\Debug\proclist.obj
-         x64\Debug\scheduler.obj
-         Homework4.vcxproj -> C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\x64\Debug\Homework4.exe
-     1>Done Building Project "C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\Homework4.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\Sam.SamLenovoPC\Desktop\stuff\school\CMPSC 122\github\cmpsc122_hw4\Homework4\Homework4\Homework4.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.26
+Time Elapsed 00:00:00.57
