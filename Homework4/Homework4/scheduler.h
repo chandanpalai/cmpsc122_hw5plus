@@ -46,6 +46,16 @@ public:
 	Priority() { name = "Priority"; }
 	
 	void addProcess(int procId) {
+		/* code for comparison
+		ProcList newHead;
+		ProcIterator iter = readySet.begin();
+		newHead.pushBack(procId, 0, 'X');
+		while (iter != readySet.end()) {
+			newHead.pushBack(iter.process(), iter.time(), iter.state());
+			iter.advance();
+		}
+		readySet = newHead; 
+		*/
 		ProcList newList;
 		ProcIterator iter = readySet.begin();
 		while (iter != readySet.end() && iter.process() > procId) {
