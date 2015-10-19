@@ -20,13 +20,13 @@ class Scheduler {
     public:
 	virtual void addProcess( int procId ) {
 	    readySet.pushBack( procId, 0, 'X');
-	}
+	}//overridden in priority
 	void chooseProcess( int &procId ) {
 	    char hold;
 	    readySet.popFront( procId, hold ); }
 	virtual int allowance(int) {
 	    return 100000;	// a long time
-	}
+	} //overridden in preemtive priority
 	virtual bool noneReady() {
 	    return readySet.empty();
 	}
