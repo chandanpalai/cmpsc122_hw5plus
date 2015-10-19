@@ -5,7 +5,7 @@
 #define DEVICE
 
 class Process;
-class Scheduler;//???
+class Scheduler;
 class Device {
     private:
 		//ProcList requests;	<- not sure if needed??

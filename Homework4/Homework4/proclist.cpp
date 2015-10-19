@@ -30,16 +30,16 @@ void ProcList::pushBack(int procId, int time, char state) {
 	}
 }
 void ProcList::popFront(int &procId, char &state) {
-	ProcListElement *removal = head;
+	ProcListElement *temp = head;
 	head = head->next;
 	if (head == NULL)
 		tail = NULL;
 	else
 		head->prev = NULL;
 
-	procId = removal->procID;
-	state = removal->state;
-	delete removal;
+	procId = temp->procID;
+	state = temp->state;
+	delete temp;
 }
 void ProcList::insert(int procId, int time, char state) {
 	ProcListElement *newEle = new ProcListElement(procId, time, state);

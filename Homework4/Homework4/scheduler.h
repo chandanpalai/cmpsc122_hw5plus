@@ -46,7 +46,7 @@ public:
 	Priority() { name = "Priority"; }
 	
 	void addProcess(int procId) {
-		/* code for comparison
+		/* code for comparison (gives same error)
 		ProcList newHead;
 		ProcIterator iter = readySet.begin();
 		newHead.pushBack(procId, 0, 'X');
@@ -56,18 +56,22 @@ public:
 		}
 		readySet = newHead; 
 		*/
-		ProcList newList;
-		ProcIterator iter = readySet.begin();
-		while (iter != readySet.end() && iter.process() > procId) {
-			newList.pushBack(iter.process(), iter.time(), iter.state());
-			iter.advance();
+		if(readySet.empty())
+			readySet.pushBack(procId, 0, 'X');
+		else {
+			ProcList newList;
+			ProcIterator iter = readySet.begin();
+			while (iter != readySet.end() && iter.process() > procId) { 
+				newList.pushBack(iter.process(), iter.time(), iter.state());
+				iter.advance();
+			}
+			newList.pushBack(procId, 0, 'X');
+			while (iter != readySet.end()) { //tried to replaced readySet.end() with NULL
+				newList.pushBack(iter.process(), iter.time(), iter.state());
+				iter.advance();
+			}
+			readySet = newList;
 		}
-		newList.pushBack(procId, 0, 'X');
-		while (iter != readySet.end()) {
-			newList.pushBack(iter.process(), iter.time(), iter.state());
-			iter.advance();
-		}
-		readySet = newList;
 	}
 };
 
