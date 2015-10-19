@@ -7,8 +7,24 @@
 using namespace std;
 #include "process.h"
 
+char convert(Device *d) {
+	if (d == &cpu) {
+		return 'X';
+	}
+	else if (d == &console) {
+		return 'I';
+	}
+	else if (d == &net) {
+		return 'N';
+	}
+	else if (d == &disk) {
+		return 'D';
+	}
+}
+
 void displayHistory( Process *history[], int size, int start, int stop ) {
-	char data[50], curState;
+	char data[50];
+	Device *curState;
 	int focus, time;
 	int increment = 1 + (stop - start) / 50; //round upwards
 
@@ -48,9 +64,9 @@ void displayHistory( Process *history[], int size, int start, int stop ) {
 		}
 	
 		// fill data for output
-		while ( time <= stop && curState != 'Q' ) {
+		while ( time <= stop && curState != NULL ) {
 			while ( time <= stop && time < iter.time() ) {
-				data[focus] = curState;
+				data[focus] = convert(curState);
 				time += increment;
 				focus++;
 			}
@@ -58,8 +74,8 @@ void displayHistory( Process *history[], int size, int start, int stop ) {
 			iter.advance();
 	
 			//catch missing states
-			while (curState != 'Q' && time >= iter.time() ) {
-				if (curState == 'X')
+			while (curState != NULL && time >= iter.time() ) {
+				if (curState == &cpu)
 					data[focus-1] = 'X';	
 				curState = iter.state();
 				iter.advance();

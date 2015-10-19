@@ -1,4 +1,5 @@
 #include <iostream>
+#include "device.h"
 using namespace std;
 
 #ifndef PROCLIST
@@ -25,10 +26,10 @@ class ProcListElement
 private:
 	int  procID;		// process this applies to
 	int  time;		// time stamp for event
-	char state;		// process state at that time
+	Device *state;		// process state at that time
 	ProcListElement *next;	// linked list link
 	ProcListElement *prev;  // linked list link
-	ProcListElement(int i, int t, char s) :
+	ProcListElement(int i, int t, Device *s) :
 		procID(i), time(t), state(s), next(NULL), prev(NULL) { }
 };
 
@@ -60,16 +61,16 @@ public:
 	}
 	void clear()		// erase the list
 	{
-		int i; char c;	// just placeholders
+		int i; Device *c;	// just placeholders
 		while (head != NULL)
 			popFront(i, c);
 	}
 	ProcIterator begin();
 	ProcIterator end();
 
-	void pushBack(int, int, char);	// add new element to end
-	void insert(int, int, char);		// add element in time order
-	void popFront(int&, char&);		// remove element from front
+	void pushBack(int, int, Device*);	// add new element to end
+	void insert(int, int, Device*);		// add element in time order
+	void popFront(int&, Device*&);		// remove element from front
 };
 
 // and an iterator to help visit all the data
@@ -89,7 +90,7 @@ public:
 	}
 	int process() const { return current->procID; };
 	int time() const { return current->time; };
-	char state() const { return current->state; };
+	Device* state() const { return current->state; };
 	void advance() { current = current->next; }
 	ProcIterator erase();	// EXTRA CREDIT function
 };

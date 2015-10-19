@@ -23,7 +23,7 @@ ProcIterator ProcList::end(){
 	return ProcIterator( this, NULL );
 }
 
-void ProcList::pushBack( int procId, int time, char state ){
+void ProcList::pushBack( int procId, int time, Device *state ){
 	ProcListElement *newEle = new ProcListElement( procId, time, state );
 	if (head == NULL)
 		head = tail = newEle;
@@ -32,7 +32,7 @@ void ProcList::pushBack( int procId, int time, char state ){
 		tail = tail->next = newEle;
 }	}
 
-void ProcList::popFront( int &procId, char &state ){
+void ProcList::popFront( int &procId, Device *&state ){
 	ProcListElement *temp = head;
 	head = head->next;
 	if (head == NULL)
@@ -45,7 +45,7 @@ void ProcList::popFront( int &procId, char &state ){
 	delete temp;
 }
 
-void ProcList::insert( int procId, int time, char state ){
+void ProcList::insert( int procId, int time, Device *state ){
 	ProcListElement *newEle = new ProcListElement( procId, time, state );
 	if (head == NULL)
 		head = tail = newEle;

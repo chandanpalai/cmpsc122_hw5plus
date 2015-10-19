@@ -2,23 +2,13 @@
 #include "device.h"
 #include "scheduler.h"
 
-Device convert(char act) { //converts the char to equivilant device
-	if (act == 'D')
-		return disk;
-	else if (act == 'N')
-		return net;
-	else if (act == 'I')
-		return console;
-	else
-		return cpu;
-}
 void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	int pid;
 	int newpid;
-	char nextAct;
+	Device *nextD;
 
 	for (int i = 0; i < size; i++) {
-		future.insert(i, arrival[i], 'X');
+		future.insert(i, arrival[i], new Device('X', 0));
 		tasks[i]->restart();
 		tasks[i]->addLog(arrival[i], '-');
 	}
@@ -32,22 +22,18 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	while (!future.empty() || !noneReady()) {
 		if (noneReady()) {
 			clock = future.leadTime();
-			future.popFront(pid, nextAct);
+			future.popFront(pid, nextD);
 			addProcess(pid);
 		}
 		else {
 			chooseProcess(pid);
-			Device *nextD = &convert(nextAct);
 			tasks[pid]->run(clock, allowance(pid), nextD);
 
 			while (!future.empty() && clock >= future.leadTime()) {
-				future.popFront(newpid, nextAct);
+				future.popFront(newpid, nextD);
 				addProcess(newpid);
 			}
-			if (nextAct == 'X')
-				addProcess(pid);
-			else
-				nextD->request(pid, clock, tasks, future);
+			nextD->request(pid, clock, tasks, future);
 		}
 	}	
 }

@@ -17,7 +17,7 @@ void Device::request( int pid, int clock, Process *tasks[], ProcList &future ) {
 		readyTime = clock + duration + 1;
 	}
 	tasks[pid]->addLog(readyTime, '-');
-	future.insert(pid, readyTime, 'X');
+	future.insert(pid, readyTime, &cpu);
 }
 
 Device disk( 'D', 200 ),

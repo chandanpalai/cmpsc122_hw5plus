@@ -1,5 +1,6 @@
 #include <iostream>
 #include "histo.h"
+#include "device.h"
 using namespace std;
 
 // Process Scheduler
@@ -19,10 +20,10 @@ class Scheduler {
 	string name;		// name of the scheduling algorithm
     public:
 	virtual void addProcess( int procId ) {
-	    readySet.pushBack( procId, 0, 'X');
+	    readySet.pushBack( procId, 0, new Device('X',0));
 	}//overridden in priority
 	void chooseProcess( int &procId ) {
-	    char hold;
+	    Device *hold;
 	    readySet.popFront( procId, hold ); }
 	virtual int allowance(int) {
 	    return 100000;	// a long time
@@ -53,11 +54,11 @@ class Priority : public Scheduler {
 
 	void addProcess( int procId ) {
 		int id;
-		char state;
+		Device *state;
 		ProcIterator focus = readySet.begin();
 
 		if (focus.process() == NULL) {//if the readySet is empty
-			readySet.pushBack(procId, 0, 'X');
+			readySet.pushBack(procId, 0, new Device('X', 0));
 		}
 		else if (focus.process() < procId) { //if procId is the largest
 			readySet.pushBack(procId, 0, 'X');
