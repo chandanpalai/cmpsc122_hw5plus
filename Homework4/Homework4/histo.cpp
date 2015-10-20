@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-#include "process.h" //pretty sure correct since unchannged
+#include "process.h"
 
 void displayHistory(Process *history[], int size, int start, int stop) {
 	char data[50], curState;

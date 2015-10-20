@@ -1,5 +1,5 @@
 //Sam Lucas, CMPSC 122, Section 001
-#include "proclist.h"//correct
+#include "proclist.h"
 
 #ifndef DEVICE
 #define DEVICE
@@ -8,7 +8,7 @@ class Process;
 class Scheduler;
 class Device {
     private:
-		//ProcList requests;	<- not sure if needed??
+		//ProcList requests;	<- not needed?
 		char action;
 		int duration;
 		int readyTime;	

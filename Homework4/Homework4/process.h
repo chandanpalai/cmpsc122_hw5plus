@@ -1,12 +1,12 @@
 //Sam Lucas, CMPSC 122, Section 001
 #include "proclist.h"
-#include <stdlib.h>//correct
+#include <stdlib.h>
 
 class Device;
 class Process {
     protected:
-	int myId;		// an identifier for the larger picture
-	int bursts;		// total number of CPU bursts (<= 10)
+	int myId;
+	int bursts;
 	int usages[10];
 	Device *nextRequest[10];
 	int currentCycle;

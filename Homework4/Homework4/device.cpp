@@ -1,7 +1,6 @@
 //Sam Lucas, CMPSC 122, Section 001
 #include "device.h"
-#include "process.h" //correct
-
+#include "process.h"
 void Device::request(int pid, int clock, Process *tasks[], ProcList &future) {
 	if (readyTime <= clock)
 		readyTime = clock;

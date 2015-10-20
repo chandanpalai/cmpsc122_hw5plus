@@ -1,6 +1,3 @@
-// A quick driver to test the History Display routine
-// It just fabricates a single job history to see what it does
-//
 #include <iostream>
 using namespace std;
 

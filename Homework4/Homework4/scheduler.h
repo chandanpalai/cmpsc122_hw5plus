@@ -1,14 +1,14 @@
 //Sam Lucas, CMPSC 122, Section 001
 #include <iostream>
 using namespace std;
-#include "histo.h"//correct
+#include "histo.h"
 
 class Scheduler {
 protected:
-	ProcList readySet;	// set of processes ready to run
-	ProcList future;	// list of future events
-	int clock;		// current clock time for simulation
-	string name;		// name of the scheduling algorithm
+	ProcList readySet;	
+	ProcList future;
+	int clock;
+	string name;
 public:
 	virtual void addProcess(int procId)
 	{
@@ -48,28 +48,9 @@ public:
 	void addProcess(int procId) {
 		readySet.insert(procId, -procId, 'X');
 	}
-
-	/*void addProcess(int procId) {
-		if(readySet.empty())
-			readySet.pushBack(procId, 0, 'X');
-		else {
-			ProcList newList;
-			ProcIterator iter = readySet.begin();
-			while (iter != readySet.end() && iter.process() > procId) {
-				newList.pushBack(iter.process(), iter.time(), iter.state());
-				iter.advance();
-			}
-			newList.pushBack(procId, 0, 'X');
-			while (iter != readySet.end()) {
-				newList.pushBack(iter.process(), iter.time(), iter.state());
-				iter.advance();
-			}
-			readySet = newList;
-		}
-	}*/
 };
 
-class Preempt : public Priority { //rework
+class Preempt : public Priority {
 public:
 	Preempt() { name = "Preemptive Priority"; }
 	int allowance() {
