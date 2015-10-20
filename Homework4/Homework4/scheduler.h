@@ -46,72 +46,33 @@ public:
 	Priority() { name = "Priority"; }
 	
 	void addProcess(int procId) {
-		/* code for comparison (gives same error)
-		ProcList newHead;
-		ProcIterator iter = readySet.begin();
-		newHead.pushBack(procId, 0, 'X');
-		while (iter != readySet.end()) {
-			newHead.pushBack(iter.process(), iter.time(), iter.state());
-			iter.advance();
-		}
-		readySet = newHead; 
-		*/
+		readySet.insert(procId, -procId, 'X');
+	}
+
+	/*void addProcess(int procId) {
 		if(readySet.empty())
 			readySet.pushBack(procId, 0, 'X');
 		else {
 			ProcList newList;
-			ProcIterator *iter = &readySet.begin();
-			while (iter != NULL && iter->process() > procId) { 
-				newList.pushBack(iter->process(), iter->time(), iter->state());
-				iter->advance();
+			ProcIterator iter = readySet.begin();
+			while (iter != readySet.end() && iter.process() > procId) {
+				newList.pushBack(iter.process(), iter.time(), iter.state());
+				iter.advance();
 			}
 			newList.pushBack(procId, 0, 'X');
-			while (iter != NULL) {
-				newList.pushBack(iter->process(), iter->time(), iter->state());
-				iter->advance();
+			while (iter != readySet.end()) {
+				newList.pushBack(iter.process(), iter.time(), iter.state());
+				iter.advance();
 			}
 			readySet = newList;
 		}
-	}
+	}*/
 };
 
 class Preempt : public Priority { //rework
 public:
 	Preempt() { name = "Preemptive Priority"; }
 	int allowance() {
-		int tempId = 0;
-		int maxId = 0;
-		int headTime = 0;
-		ProcList newHead;
-		ProcIterator iter = readySet.begin();
-		while (iter != readySet.end()) {
-			tempId = iter.process();
-			if (tempId > maxId) {
-				maxId = tempId;
-				headTime = iter.time();
-			}
-			iter.advance();
-		}
-		iter = readySet.begin();
-		while (iter != readySet.end() && iter.process() != maxId) {
-			iter.advance();
-		}
-		if (iter != readySet.end()) {
-			newHead.pushBack(maxId, iter.time(), iter.state());
-		}
-
-		iter = readySet.begin();
-		int timesFound = 0; //check for duplicate ProcIds
-		while (iter != readySet.end()) {
-			if (iter.process() != maxId || timesFound > 0) {
-				newHead.pushBack(iter.process(), iter.time(), iter.state());
-			}
-			else {
-				timesFound++; //found head
-			}
-			iter.advance();
-		}
-		readySet = newHead;
-		return headTime;
+		return 1;
 	}
 };

@@ -2,7 +2,7 @@
 #include "process.h"
 #include "device.h"//correct
 
-void Process::run( int &clock, int allowance, Device *&next ) {
+void Process::run( int &clock, int allowance, Device *&next) {
 	addLog(clock, 'X');
 	if (allowance >= remainingTime) {
 		clock += remainingTime;
