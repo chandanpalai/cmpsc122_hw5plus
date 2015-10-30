@@ -1,8 +1,11 @@
 //Sam Lucas, CMPSC 122, Section 001
-#include <iostream>
+#include <iostream> 
 #include <iomanip>
-using namespace std;
 #include "process.h"
+using namespace std;
+
+#include <windows.h>
+#include <sstream>
 
 void displayHistory(Process *history[], int size, int start, int stop) {
 	char data[50], curState;
@@ -68,4 +71,52 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			cout << data[x];
 		} cout << endl;
 	}
+	int avgTurn = 0; 
+	int avgResp = 0, resp = 0;
+	int maxResp = 0;
+	int interactive = 0, nonInteractive = 0;
+	int startTime;
+
+	for (int a = 0; a < size; a++) {
+		ProcList &log = history[a]->getLog();
+		ProcIterator iter = log.begin();
+
+		if (history[a]->isInteractive()) {
+			interactive++;
+			//find start
+			time = startTime = iter.time();
+			curState = iter.state();
+
+			//find end
+			while (time <= stop && curState != 'Q') {
+				iter.advance();
+				time = iter.time();
+				curState = iter.state();
+			}
+			avgTurn += (time - startTime);
+		}
+		else if (!(history[a]->isInteractive())) {
+			nonInteractive++;
+
+			time = iter.time();
+			if(resp != 0)
+				avgResp += (time - resp);
+
+			//find end
+			while (time <= stop && curState != 'Q') {
+				iter.advance();
+				time = iter.time();
+				curState = iter.state();
+			}
+			resp = time;
+		}
+	}
+	avgTurn /= interactive;
+	avgResp /= nonInteractive;
+	cout << "Average Turnaround: " << avgTurn << endl;
+	cout << "Average Response Time: " << avgResp << endl << endl;
+	//ostringstream convert;
+	//convert << "Average Turnaround: " <<  avgTurn;
+	//string Result = convert.str();
+	//MessageBox(NULL, (LPCWSTR)Result.c_str(), (LPCWSTR)L"Results", MB_ICONINFORMATION | MB_OK);
 }
