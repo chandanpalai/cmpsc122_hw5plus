@@ -76,16 +76,16 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 	int maxResp = 0;
 	int interactive = 0, nonInteractive = 0;
 	int startTime;
-
+	ProcList interactives;
 	for (int a = 0; a < size; a++) {
 		ProcList &log = history[a]->getLog();
 		ProcIterator iter = log.begin();
+		time = startTime = iter.time();
+		curState = iter.state();
 
-		if (history[a]->isInteractive()) {
-			interactive++;
-			//find start
-			time = startTime = iter.time();
-			curState = iter.state();
+		if (!(history[a]->isInteractive())) {
+			nonInteractive++;
+			time = iter.time();
 
 			//find end
 			while (time <= stop && curState != 'Q') {
@@ -95,26 +95,36 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			}
 			avgTurn += (time - startTime);
 		}
-		else if (!(history[a]->isInteractive())) {
-			nonInteractive++;
-
+		else {
+			interactive++;
 			time = iter.time();
-			if(resp != 0)
-				avgResp += (time - resp);
-
-			//find end
+			curState = iter.state();
 			while (time <= stop && curState != 'Q') {
+				if (curState == 'I') {
+					interactives.insert(time, time + 1000, '~');
+				}  
 				iter.advance();
 				time = iter.time();
 				curState = iter.state();
 			}
-			resp = time;
 		}
 	}
-	avgTurn /= interactive;
-	avgResp /= nonInteractive;
+	interactives.pushBack(0, 0, 'Q');
+	ProcIterator iter = interactives.begin();
+	int xEnd = iter.time(); int xStart;
+	iter.advance();
+	while (iter.state() != 'Q') {
+		xStart = iter.process();
+		avgResp += (xStart - xEnd);
+		xEnd = iter.time();
+		iter.advance();
+	}
+
+	avgTurn /= nonInteractive;
+	avgResp /= interactive;
 	cout << "Average Turnaround: " << avgTurn << endl;
 	cout << "Average Response Time: " << avgResp << endl << endl;
+
 	//ostringstream convert;
 	//convert << "Average Turnaround: " <<  avgTurn;
 	//string Result = convert.str();
