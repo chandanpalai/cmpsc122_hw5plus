@@ -109,24 +109,32 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			}
 		}
 	}
-	interactives.pushBack(0, 0, 'Q');
-	ProcIterator iter = interactives.begin();
-	int xEnd = iter.time(); int xStart;
-	iter.advance();
-	while (iter.state() != 'Q') {
-		xStart = iter.process();
-		avgResp += (xStart - xEnd);
-		xEnd = iter.time();
-		iter.advance();
+	if (nonInteractive != 0) {
+		avgTurn /= nonInteractive;
+		cout << "Average Turnaround Time: " << avgTurn << endl;
 	}
-
-	avgTurn /= nonInteractive;
-	avgResp /= interactive;
-	cout << "Average Turnaround: " << avgTurn << endl;
-	cout << "Average Response Time: " << avgResp << endl << endl;
-
-	//ostringstream convert;
-	//convert << "Average Turnaround: " <<  avgTurn;
-	//string Result = convert.str();
-	//MessageBox(NULL, (LPCWSTR)Result.c_str(), (LPCWSTR)L"Results", MB_ICONINFORMATION | MB_OK);
+	else {
+		cout << "Average Turnaround Time: n/a" << endl;
+	}
+	if (interactive != 0) {
+		interactives.pushBack(0, 0, 'Q');
+		ProcIterator iter = interactives.begin();
+		int xEnd = iter.time(); int xStart;
+		iter.advance();
+		while (iter.state() != 'Q') {
+			xStart = iter.process();
+			avgResp += (xStart - xEnd);
+			if ((xStart - xEnd) > maxResp)
+				maxResp = xStart - xEnd;
+			xEnd = iter.time();
+			iter.advance();
+		}
+		avgResp /= interactive;
+		cout << "Average Response Time: " << avgResp << endl;
+		cout << "Max Response Time: " << maxResp << endl << endl;
+	}
+	else {
+		cout << "Average Response Time: n/a" << endl;
+		cout << "Max Response Time: n/a" << endl << endl;
+	}
 }

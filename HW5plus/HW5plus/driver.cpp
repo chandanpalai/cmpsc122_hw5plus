@@ -9,7 +9,7 @@ int main()
    Scheduler *scheds[] = 	    // make some process schedulers
 	{ new FCFS(), new RoundRobin(), new Priority(), new Preempt() };
    Process *tasks[] = 		    // 4 processes
-	{ new Computation(0), new Interact(1), new Computation(2), new Computation(3) };
+	{ new Interact(0), new Computation(1), new Interact(2), new Download(3) };
    int arrival[] = {10, 40, 80, 120};   // arrive at these times
  
    for (int i=0; i<4; i++)

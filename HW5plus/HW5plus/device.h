@@ -19,5 +19,5 @@ class Device {
 		}
 		void request( int, int, Process* [], ProcList & );
 };
-extern Device disk, net, console, cpu; //defined elsewhere
+extern Device disk, net, console, cpu;
 #endif
