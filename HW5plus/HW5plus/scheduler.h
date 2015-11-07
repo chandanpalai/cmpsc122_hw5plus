@@ -14,7 +14,7 @@ public:
 	{
 		readySet.pushBack(procId, 0, 'X');
 	}
-	void chooseProcess(int &procId)
+	virtual void chooseProcess(int &procId)
 	{
 		char hold;
 		readySet.popFront(procId, hold);
@@ -27,7 +27,7 @@ public:
 	{
 		return readySet.empty();
 	}
-	void runScheduler(Process*[], int[], int);
+	virtual void runScheduler(Process*[], int[], int);
 };
 class FCFS : public Scheduler {
 public:
@@ -56,4 +56,30 @@ public:
 	int allowance() {
 		return 1;
 	}
+};
+
+class SRT : public Preempt {
+private:
+	Process **procs;	// this scheduler's way of getting to process info
+
+						// declare additional variables as needed here
+
+public:
+	SRT() { name = "SRT"; } 	// also initialize anything else you need here
+
+	//  grabs the process information, and then runs the simulation
+	void runScheduler(Process* tasks[], int arrival[], int size) {
+		procs = tasks;
+		Scheduler::runScheduler(tasks, arrival, size);
+	}
+
+	//  declare whatever you plan to override here
+	//  and implement it here or in scheduler.cpp
+
+	//override chooseProcess( int &procId )
+	//must find lowest remaining time process in O(1)-O(log n) time, no worse than O(n)
+	//assume no more than 20 processes at a time
+
+	//probably override addProcess(int procId) too since readySet cannot be used
+
 };

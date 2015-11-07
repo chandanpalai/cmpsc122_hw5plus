@@ -4,7 +4,7 @@
 
 class Device;
 class Process {
-    protected:
+  protected:
 	int myId;
 	int bursts;
 	int usages[10];
@@ -13,7 +13,13 @@ class Process {
 	int remainingTime;
 	ProcList log;
 
-    public:
+  public:
+	int getId() {
+		return myId;
+	}
+	int getRemainingTime() {
+		return remainingTime;
+	}
 	void restart() {
 	    currentCycle = 0;
 	    remainingTime = usages[0];
