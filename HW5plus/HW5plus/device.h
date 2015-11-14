@@ -8,7 +8,6 @@ class Process;
 class Scheduler;
 class Device {
     private:
-		//ProcList requests;	<- not needed?
 		char action;
 		int duration;
 		int readyTime;	

@@ -14,7 +14,7 @@ public:
 	{
 		readySet.pushBack(procId, 0, 'X');
 	}
-	virtual void chooseProcess(int &procId)
+	virtual void chooseProcess(int &procId)//changed to virtual
 	{
 		char hold;
 		readySet.popFront(procId, hold);
@@ -27,13 +27,12 @@ public:
 	{
 		return readySet.empty();
 	}
-	virtual void runScheduler(Process*[], int[], int);
+	virtual void runScheduler(Process*[], int[], int);//changed to virtual
 };
 class FCFS : public Scheduler {
 public:
 	FCFS() { name = "First Come First Served"; }
 };
-
 class RoundRobin : public Scheduler {
 public:
 	RoundRobin() { name = "Round Robin"; }
@@ -49,7 +48,6 @@ public:
 		readySet.insert(procId, -procId, 'X');
 	}
 };
-
 class Preempt : public Priority {
 public:
 	Preempt() { name = "Preemptive Priority"; }
@@ -57,29 +55,41 @@ public:
 		return 1;
 	}
 };
-
 class SRT : public Preempt {
 private:
 	Process **procs;	// this scheduler's way of getting to process info
 
-						// declare additional variables as needed here
+	Process *ready[20];
+
+	Process newValue;
+	int pos;
+
+	Process *buckets[10000];
+	int bucketSize[10000];
+	int fillPos;
+	int which;
+	int divisor;
 
 public:
-	SRT() { name = "SRT"; } 	// also initialize anything else you need here
+	SRT() { name = "SRT"; }
 
-	//  grabs the process information, and then runs the simulation
 	void runScheduler(Process* tasks[], int arrival[], int size) {
 		procs = tasks;
 		Scheduler::runScheduler(tasks, arrival, size);
 	}
 
-	//  declare whatever you plan to override here
-	//  and implement it here or in scheduler.cpp
+	void insertSort(Process [], int);
+	void sort(Process [], int);
 
-	//override chooseProcess( int &procId )
-	//must find lowest remaining time process in O(1)-O(log n) time, no worse than O(n)
-	//assume no more than 20 processes at a time
-
-	//probably override addProcess(int procId) too since readySet cannot be used
-
+	void addProcess(int procId) {
+		int i;
+		while (i < 20 && ready[i] != NULL) { i++; }
+		ready[i] = procs[procId];
+	}
+	void chooseProcess(int &procId) {
+		// to be updated for ready[]
+	}
+	bool noneReady() {
+		return ready[0] == NULL;
+	}
 };
