@@ -1,5 +1,6 @@
 //Sam Lucas, CMPSC 122, Section 001
 #include <iostream>
+#include <vector>
 using namespace std;
 #include "histo.h"
 
@@ -55,41 +56,40 @@ public:
 		return 1;
 	}
 };
-class SRT : public Preempt {
+class SRT : public Scheduler {
 private:
-	Process **procs;	// this scheduler's way of getting to process info
+	Process **procs;
+	vector<Process*> readySet;
 
-	Process *ready[20];
-
-	Process newValue;
-	int pos;
-
-	Process *buckets[10000];
-	int bucketSize[10000];
-	int fillPos;
-	int which;
-	int divisor;
+	Process *val;
+	int i, j;
 
 public:
-	SRT() { name = "SRT"; }
+	SRT() { name = "SRT";}
 
 	void runScheduler(Process* tasks[], int arrival[], int size) {
 		procs = tasks;
 		Scheduler::runScheduler(tasks, arrival, size);
 	}
 
-	void insertSort(Process [], int);
-	void sort(Process [], int);
+	void sort(vector<Process*>&);//insertion sort
 
 	void addProcess(int procId) {
-		int i;
-		while (i < 20 && ready[i] != NULL) { i++; }
-		ready[i] = procs[procId];
+		readySet.push_back(procs[procId]);
+		sort(readySet);
 	}
 	void chooseProcess(int &procId) {
-		// to be updated for ready[]
+		procId = readySet[0]->getId();
+		vector<Process*> newReadySet;
+		for (int x = 1; x < readySet.size(); x++) {
+			newReadySet.push_back(readySet[x]);
+		}
+		readySet = newReadySet;
 	}
 	bool noneReady() {
-		return ready[0] == NULL;
+		return readySet.empty();
+	}
+	int allowance() {
+		return 1;
 	}
 };

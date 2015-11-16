@@ -30,6 +30,7 @@ Computation::Computation( int id ) {
 		nextRequest[i] = &disk;
     }
     nextRequest[bursts-1] = NULL;
+	remainingTime = usages[0];
 }
 Download::Download( int id ) {
     myId = id;
@@ -43,6 +44,7 @@ Download::Download( int id ) {
 	    nextRequest[i] = &disk;
     }
     nextRequest[bursts-1] = NULL;
+	remainingTime = usages[0];
 }
 Interact::Interact( int id ) {
     myId = id;
@@ -53,4 +55,5 @@ Interact::Interact( int id ) {
 		nextRequest[i] = const_cast<Device *>(&console);
     }
     nextRequest[bursts-1] = NULL;
+	remainingTime = usages[0];
 }
