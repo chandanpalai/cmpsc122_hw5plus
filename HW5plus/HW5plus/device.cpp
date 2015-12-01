@@ -10,6 +10,6 @@ void Device::request(int pid, int clock, Process *tasks[], ProcList &future) {
 	future.insert(pid, readyTime, 'X');	
 }
 Device disk('D', 200),
-		net('N', 100),
-		console('I', 1000),
+		net('N', 100), //removed console('I', 1000)
 		cpu('X', 0);
+Console keyboard('I', 1000);

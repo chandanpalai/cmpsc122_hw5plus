@@ -8,15 +8,24 @@ using namespace std;
 #include <sstream>
 
 void displayHistory(Process *history[], int size, int start, int stop) {
-	char data[50], curState;
+	char data[100], curState;
 	int focus, time;
-	int increment = 1 + (stop - start) / 50; //round upwards
+	int increment = 1 + (stop - start) / 100; //round upwards
 
-	cout << "Time:  " << setw(3) << start <<
-		setw((stop - start) / increment) << stop << endl;
+	//cout << "Time:  " << setw(3) << start <<
+	//	setw(((stop - start) / increment)+2) << stop << endl;
+
+	std::cout << "   Time: " << start;
+	for (int v = 0; v < ((stop - start) / increment)-3; v++) { std::cout << "_"; }
+	std::cout << stop << endl; 
+	std::cout << setw(10) << "|" << setw(((stop - start) / increment) + 2) << "|" << endl;
+
+	//cout << "         |";
+	//for (int v = 0; v <= ((stop - start) / increment); v++) { cout << "_"; }
+	//cout << "|" << endl;
 
 	for (int a = 0; a<size; a++) {
-		for (int b = 0; b<50; b++)
+		for (int b = 0; b<100; b++)
 			data[b] = ' ';
 
 		ProcList &log = history[a]->getLog();
@@ -66,11 +75,15 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			}
 		}
 		//print
-		cout << "History: ";
-		for (int x = 0; x < 50; x++) {
-			cout << data[x];
-		} cout << endl;
+		std::cout << "History: |";
+		for (int x = 0; x < 100; x++) {
+			std::cout << data[x];
+		} std::cout << "|" << endl;
 	}
+	std::cout << setw(10) << "|";
+	for (int w = 0; w <= ((stop - start) / increment); w++) { std::cout << "_"; }
+	std::cout << "|" << endl;
+
 	int avgTurn = 0; 
 	int avgResp = 0, resp = 0;
 	int maxResp = 0;
@@ -109,19 +122,22 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			}
 		}
 	}
+	std::cout << setw(10) << "";
 	if (nonInteractive != 0) {
 		avgTurn /= nonInteractive;
-		cout << "Average Turnaround Time: " << avgTurn << endl;
+		std::cout << "Avg Turnaround: " << avgTurn;
 	}
 	else {
-		cout << "Average Turnaround Time: n/a" << endl;
+		std::cout << "Avg Turnaround: n/a";
 	}
+	std::cout << setw(5) << "";
+
 	if (interactive != 0) {
 		interactives.pushBack(0, 0, 'Q');
 		ProcIterator iter = interactives.begin();
 		int xEnd = iter.time(); int xStart;
 		iter.advance();
-		while (iter.state() != 'Q') {
+		while (iter != interactives.end() && iter.state() != 'Q') {
 			xStart = iter.process();
 			avgResp += (xStart - xEnd);
 			if ((xStart - xEnd) > maxResp)
@@ -130,11 +146,11 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			iter.advance();
 		}
 		avgResp /= interactive;
-		cout << "Average Response Time: " << avgResp << endl;
-		cout << "Max Response Time: " << maxResp << endl << endl;
+		std::cout << "Avg Response: " << avgResp << setw(5) << "";
+		std::cout << "Max Response: " << maxResp << endl << endl;
 	}
 	else {
-		cout << "Average Response Time: n/a" << endl;
-		cout << "Max Response Time: n/a" << endl << endl;
+		std::cout << "Avg Response: n/a" << setw(5) << "";
+		std::cout << "Max Response: n/a" << endl << endl;
 	}
 }

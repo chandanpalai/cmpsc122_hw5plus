@@ -7,8 +7,8 @@ class Process {
   protected:
 	int myId;
 	int bursts;
-	int usages[10];
-	Device *nextRequest[10];
+	int usages[20]; //increased from  10
+	Device *nextRequest[20]; //increased from 10
 	int currentCycle;
 	int remainingTime;
 	ProcList log;

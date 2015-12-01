@@ -18,7 +18,7 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 	cpu.restart();
 	disk.restart();
 	net.restart();
-	console.restart();
+	keyboard.restart();
 
 	while (!future.empty() || !noneReady()) {
 		if (noneReady()) {

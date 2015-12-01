@@ -9,8 +9,9 @@ protected:
 	ProcList readySet;	
 	ProcList future;
 	int clock;
-	string name;
 public:
+	string name; //changed to public so that the driver might display names
+
 	virtual void addProcess(int procId)
 	{
 		readySet.pushBack(procId, 0, 'X');
@@ -32,18 +33,18 @@ public:
 };
 class FCFS : public Scheduler {
 public:
-	FCFS() { name = "First Come First Served"; }
+	FCFS() { name = "FIRST COME FIRST SERVED"; }
 };
 class RoundRobin : public Scheduler {
 public:
-	RoundRobin() { name = "Round Robin"; }
+	RoundRobin() { name = "ROUND ROBIN"; }
 	int allowance() {
 		return 70;
 	}
 };
 class Priority : public Scheduler {
 public:
-	Priority() { name = "Priority"; }
+	Priority() { name = "PRIORITY"; }
 	
 	void addProcess(int procId) {
 		readySet.insert(procId, -procId, 'X');
@@ -51,7 +52,7 @@ public:
 };
 class Preempt : public Priority {
 public:
-	Preempt() { name = "Preemptive Priority"; }
+	Preempt() { name = "PREEMPTIVE PRIORITY"; }
 	int allowance() {
 		return 1;
 	}
@@ -65,7 +66,7 @@ private:
 	int i, j;
 
 public:
-	SRT() { name = "SRT";}
+	SRT() { name = "SHOREST REMAINING TIME";}
 
 	void runScheduler(Process* tasks[], int arrival[], int size) {
 		procs = tasks;
