@@ -19,12 +19,12 @@ class Device {
 		void restart() {
 		    readyTime = 0;
 		}
-		void request( int, int, Process* [], ProcList & ); //id, clock, *tasks[], &future
+		virtual void request( int, int, Process *[], ProcList & ); //id, clock, *tasks[], &future
 };
 class Console : public Device {
-	private:
-		int lastLaunch, procsActive;
-		char typeActive;
+	//private:
+		//int lastLaunch, procsActive;
+		//char typeActive;
 
 	public:
 		Console(char a, int d) {
@@ -32,11 +32,10 @@ class Console : public Device {
 			duration = d;
 			readyTime = 0;
 		}
-		void launch() {
+		void request(int, int, Process *[], ProcList &);
 			//creates new process at any time
 			//do not create new interactive if one is running
 			//leave realistic gap between process initiations
-		}
 		//need to keep track of time elapsed since last input/process launch
 		//need to keep track of # processes active and their type
 		//see private variables

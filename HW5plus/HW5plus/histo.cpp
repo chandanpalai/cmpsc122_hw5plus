@@ -10,13 +10,14 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 	int focus, time;
 	int increment = 1 + (stop - start) / 60; //round upwards
 
-	//prints range beside the scheduler name
-	cout << "   Time Frame: " << start << "-" << stop << endl;
+	//prints ranges beside the scheduler name
+	cout << setw(7) << " " << "Total Time Frame: " << start << "-" << stop;
+	cout << "   Time Range Per Char: " << (1 + (stop - start) / 60) << endl;
 
 	//top frame of box
 	cout << setw(9);
-	for (int v = 0; v < (((stop - start) / increment)+3); v++) { cout << "_"; }
-	cout << endl << setw(8) << "|" << setw(((stop - start) / increment) + 4) << "|" << endl;
+	for (int v = 0; v < (((stop - start) / increment)+2); v++) { cout << "_"; }
+	cout << endl << setw(8) << "|" << setw(((stop - start) / increment) + 3) << "|" << endl;
 
 	//begin processing each scheduler
 	for (int a = 0; a<size; a++) {
@@ -59,7 +60,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 				focus++;
 			}
 			curState = iter.state();
-			iter.advance();
+			if(curState != 'Q') iter.advance();
 
 			//catch missing states
 			while (curState != 'Q' && time >= iter.time()) {
@@ -76,9 +77,9 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 		} 
 		std::cout << "|" << endl;
 	}
-
+	//print bottom frame
 	std::cout << setw(8) << "|";
-	for (int w = 0; w <= (((stop - start) / increment)+2); w++) { std::cout << "_"; }
+	for (int w = 0; w <= (((stop - start) / increment)+1); w++) { std::cout << "_"; }
 	std::cout << "|" << endl;
 
 	int avgTurn = 0, avgResp = 0, maxResp = 0, interactive = 0, nonInteractive = 0, startTime;

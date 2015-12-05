@@ -4,16 +4,18 @@
 
 class Device;
 class Process {
-  protected:
+	friend class Console;
+
+protected:
 	int myId;
 	int bursts;
-	int usages[20]; //increased from  10
-	Device *nextRequest[20]; //increased from 10
+	int usages[10]; //increased from  10
+	Device *nextRequest[10]; //increased from 10
 	int currentCycle;
 	int remainingTime;
 	ProcList log;
 
-  public:
+public:
 	int getId() {
 		return myId;
 	}
