@@ -9,8 +9,8 @@ class Process {
 protected:
 	int myId;
 	int bursts;
-	int usages[10]; //increased from  10
-	Device *nextRequest[10]; //increased from 10
+	int usages[15]; //increased from  10
+	Device *nextRequest[15]; //increased from 10
 	int currentCycle;
 	int remainingTime;
 	ProcList log;
@@ -36,15 +36,27 @@ public:
 	virtual bool isInteractive() {
 	    return false;	// assume a background job
 	}
+	virtual bool isDown() {
+		return false;
+	}
+	virtual bool isComp() {
+		return false;
+	}
 	void run( int &, int, Device *& );
 };
 class Computation : public Process {
     public:
 	Computation( int id );
+	bool isComp() {
+		return true;
+	}
 };
 class Download : public Process {
     public:
 	Download( int id );
+	bool isDown() {
+		return true;
+	}
 };
 class Interact: public Process {
     public:

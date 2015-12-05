@@ -23,7 +23,7 @@ void Process::run( int &clock, int allowance, Device *&next) {
 
 Computation::Computation( int id ) {
     myId = id;
-    bursts = 5 + rand() % 3;//increased from 4 & 3
+    bursts = 5 + rand() % 3;//5-8; increased from 4 & 3
     for (int i=0; i < bursts; i++)
     {
         usages[i] = 200 + rand() % 120;
@@ -34,7 +34,7 @@ Computation::Computation( int id ) {
 }
 Download::Download( int id ) {
     myId = id;
-    bursts = 9;
+    bursts = 9 + rand() % 5;//increased from 9
     for (int i=0; i < bursts; i++)
     {
         usages[i] = 40 + rand() % 20;
@@ -48,7 +48,7 @@ Download::Download( int id ) {
 }
 Interact::Interact( int id ) {
     myId = id;
-    bursts = 5; //increased from 4
+    bursts = 3 + rand() % 3; //increased from 4
     for (int i=0; i < bursts; i++)
     {
         usages[i] = 30 + rand() % 20;
