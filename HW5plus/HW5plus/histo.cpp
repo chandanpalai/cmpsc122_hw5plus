@@ -4,30 +4,26 @@
 #include "process.h"
 using namespace std;
 
-#include <windows.h>
-#include <sstream>
 
 void displayHistory(Process *history[], int size, int start, int stop) {
-	char data[100], curState;
+	char data[60], curState;
 	int focus, time;
-	int increment = 1 + (stop - start) / 100; //round upwards
+	int increment = 1 + (stop - start) / 60; //round upwards
 
-	//cout << "Time:  " << setw(3) << start <<
-	//	setw(((stop - start) / increment)+2) << stop << endl;
+	//prints range beside the scheduler name
+	cout << "   Time Frame: " << start << "-" << stop << endl;
 
-	std::cout << "   Time: " << start;
-	for (int v = 0; v < ((stop - start) / increment)-3; v++) { std::cout << "_"; }
-	std::cout << stop << endl; 
-	std::cout << setw(10) << "|" << setw(((stop - start) / increment) + 2) << "|" << endl;
+	//top frame of box
+	cout << setw(9);
+	for (int v = 0; v < (((stop - start) / increment)+3); v++) { cout << "_"; }
+	cout << endl << setw(8) << "|" << setw(((stop - start) / increment) + 4) << "|" << endl;
 
-	//cout << "         |";
-	//for (int v = 0; v <= ((stop - start) / increment); v++) { cout << "_"; }
-	//cout << "|" << endl;
-
+	//begin processing each scheduler
 	for (int a = 0; a<size; a++) {
-		for (int b = 0; b<100; b++)
+		for (int b = 0; b<60; b++)
 			data[b] = ' ';
 
+		//find beginning of process log
 		ProcList &log = history[a]->getLog();
 		ProcIterator iter = log.begin();
 
@@ -46,8 +42,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 		iter = log.begin();
 		if (iter.time() > start)
 			focus = (iter.time() - start) / increment;
-		else
-			focus = 0;
+		else focus = 0;
 		time = start + focus*increment;
 
 		curState = iter.state();
@@ -75,21 +70,20 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			}
 		}
 		//print
-		std::cout << "History: |";
-		for (int x = 0; x < 100; x++) {
+		std::cout << "Proc " << a << ":| ";
+		for (int x = 0; x < 60; x++) {
 			std::cout << data[x];
-		} std::cout << "|" << endl;
+		} 
+		std::cout << "|" << endl;
 	}
-	std::cout << setw(10) << "|";
-	for (int w = 0; w <= ((stop - start) / increment); w++) { std::cout << "_"; }
+
+	std::cout << setw(8) << "|";
+	for (int w = 0; w <= (((stop - start) / increment)+2); w++) { std::cout << "_"; }
 	std::cout << "|" << endl;
 
-	int avgTurn = 0; 
-	int avgResp = 0, resp = 0;
-	int maxResp = 0;
-	int interactive = 0, nonInteractive = 0;
-	int startTime;
+	int avgTurn = 0, avgResp = 0, maxResp = 0, interactive = 0, nonInteractive = 0, startTime;
 	ProcList interactives;
+
 	for (int a = 0; a < size; a++) {
 		ProcList &log = history[a]->getLog();
 		ProcIterator iter = log.begin();
@@ -122,7 +116,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			}
 		}
 	}
-	std::cout << setw(10) << "";
+	std::cout << setw(7) << "";
 	if (nonInteractive != 0) {
 		avgTurn /= nonInteractive;
 		std::cout << "Avg Turnaround: " << avgTurn;
@@ -130,7 +124,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 	else {
 		std::cout << "Avg Turnaround: n/a";
 	}
-	std::cout << setw(5) << "";
+	std::cout << setw(3) << "";
 
 	if (interactive != 0) {
 		interactives.pushBack(0, 0, 'Q');
@@ -146,11 +140,12 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			iter.advance();
 		}
 		avgResp /= interactive;
-		std::cout << "Avg Response: " << avgResp << setw(5) << "";
-		std::cout << "Max Response: " << maxResp << endl << endl;
+		std::cout << "Avg Response: " << avgResp << setw(3) << "";
+		std::cout << "Max Response: " << maxResp;
 	}
 	else {
-		std::cout << "Avg Response: n/a" << setw(5) << "";
-		std::cout << "Max Response: n/a" << endl << endl;
+		std::cout << "Avg Response: n/a" << setw(3) << "";
+		std::cout << "Max Response: n/a";
 	}
+	cout << endl << endl << endl;
 }

@@ -10,7 +10,7 @@ protected:
 	ProcList future;
 	int clock;
 public:
-	string name; //changed to public so that the driver might display names
+	string name;
 
 	virtual void addProcess(int procId)
 	{
