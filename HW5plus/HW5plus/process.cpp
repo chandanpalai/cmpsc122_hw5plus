@@ -25,7 +25,7 @@ Computation::Computation( int id ) {
     bursts = 5 + rand() % 3;//5-8; increased from 4 & 3
     for (int i=0; i < bursts; i++)
     {
-        usages[i] = 200 + rand() % 120;
+        usages[i] = 200 + rand() % 300; //increased from 200 & 120
 		nextRequest[i] = &disk;
     }
     nextRequest[bursts-1] = NULL;
@@ -36,7 +36,7 @@ Download::Download( int id ) {
     bursts = 9 + rand() % 5;//increased from 9
     for (int i=0; i < bursts; i++)
     {
-        usages[i] = 40 + rand() % 20;
+        usages[i] = 200 + rand() % 200; //increased from 40 & 20
 	if (i%2 == 0)
 	    nextRequest[i] = &net;
 	else
@@ -50,7 +50,7 @@ Interact::Interact( int id ) {
     bursts = 3 + rand() % 3; //increased from 4
     for (int i=0; i < bursts; i++)
     {
-        usages[i] = 30 + rand() % 20;
+        usages[i] = 100 + rand() % 200;//increased from 30 & 20
 		nextRequest[i] = &keyboard;//const_cast<Console *>(&keyboard)
     }
     nextRequest[bursts-1] = NULL;
