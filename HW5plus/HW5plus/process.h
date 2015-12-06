@@ -42,6 +42,9 @@ public:
 	virtual bool isComp() {
 		return false;
 	}
+	virtual bool isWord() {
+		return false;
+	}
 	void run( int &, int, Device *& );
 };
 class Computation : public Process {
@@ -64,4 +67,4 @@ class Interact: public Process {
 	bool isInteractive() {
 	    return true;
 	}
-};	
+};

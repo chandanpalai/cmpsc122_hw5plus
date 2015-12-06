@@ -39,7 +39,6 @@ void Scheduler::runScheduler( Process *tasks[], int arrival[], int size ) {
 		}
 	}	
 }
-
 void SRT::sort(vector<Process*>& data) {
 		for (i = 1; i < data.size(); i++) {
 				val = data[i];

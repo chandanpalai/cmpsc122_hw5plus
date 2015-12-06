@@ -1,3 +1,4 @@
+//Sam Lucas, CMPSC 122, Section 001
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -6,11 +7,10 @@ using namespace std;
 #include "scheduler.h"
 #include "device.h"
 
-void reset(Process *arr[]) {
+void reset(Process *arr[]) { //resets the array of processes for each simulation
 	arr[0] = new Interact(0);
 	for (int h = 1; h < 10; h++) { arr[h] = NULL; }
 }
-
 int main()
 {
 	Scheduler *scheds[] =

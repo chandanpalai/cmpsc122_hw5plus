@@ -20,7 +20,6 @@ void Process::run( int &clock, int allowance, Device *&next) {
 	else
 		addLog(clock, '-');
 }
-
 Computation::Computation( int id ) {
     myId = id;
     bursts = 5 + rand() % 3;//5-8; increased from 4 & 3

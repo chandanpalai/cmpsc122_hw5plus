@@ -20,13 +20,13 @@ void Console::request(int pid, int clock, Process *tasks[], ProcList &future) {
 	readyTime += duration;
 	tasks[pid]->addLog(readyTime, '-');
 
-	int launch = rand() % 7; //0-6; 66% chance of launching new process
+	int launch = rand() % 7; //0-6; roughly 86% chance of launching new process
 	int waitTime = rand() % 600 + 400; //400-1000; range of time delay before new process is started by user
 
 	if (launch > 0) { //launch new process
 		int type;
 		if (tasks[pid]->nextRequest[tasks[pid]->currentCycle] == NULL)//determine if interactive process is ending
-			type = rand() % 6; //0-5; if so 66% chance for interactive
+			type = rand() % 7; //0-6; 66% chance for interactive, 33% chance for the other two
 		else
 			type = rand() % 2;//otherwise 50/50 for Computation or Download
 

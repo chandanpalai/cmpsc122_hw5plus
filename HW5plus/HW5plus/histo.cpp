@@ -5,7 +5,6 @@
 #include <string>
 using namespace std;
 
-
 void displayHistory(Process *history[], int size, int start, int stop) {
 	char data[60], curState;
 	int focus, time;
@@ -42,7 +41,6 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 				iter.advance();
 			iter2.advance();
 		}
-
 		//find beginning
 		iter = log.begin();
 		if (iter.time() > start)
@@ -55,7 +53,6 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 			curState = iter.state();	// 
 			iter.advance();
 		}
-
 		// fill data for output
 		while (time <= stop && curState != 'Q') {
 			while (time <= stop && time < iter.time()) {
@@ -85,6 +82,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 	for (int w = 0; w <= (((stop - start) / increment)+1); w++) { std::cout << "_"; }
 	cout << "|" << endl;
 
+	//look thru processes,count times between, and increment types
 	for (int a = 0; a < size; a++) {
 		ProcList &log = history[a]->getLog();
 		ProcIterator iter = log.begin();
@@ -120,7 +118,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 		}
 	}
 	std::cout << setw(7) << "";
-	if (nonInteractive != 0) {
+	if (nonInteractive != 0) { //if there were non-interactive proocesses print the stats
 		avgTurn /= nonInteractive;
 		cout << "Avg Turnaround: " << avgTurn;
 	}
@@ -129,7 +127,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 	}
 	cout << setw(3) << "";
 
-	if (interactive != 0) {
+	if (interactive != 0) { //if there were interactive processes print the stats
 		interactives.pushBack(0, 0, 'Q');
 		ProcIterator iter = interactives.begin();
 		int xEnd = iter.time(); int xStart;
@@ -150,7 +148,7 @@ void displayHistory(Process *history[], int size, int start, int stop) {
 		cout << "Avg Response: n/a" << setw(3) << "";
 		cout << "Max Response: n/a";
 	}
-
+	//print out # of each process type
 	cout << endl << setw(7) << " " << "Computations: " << comp << setw(3) << " ";
 	cout << "Downloads: " << down << setw(3) << "";
 	cout << "Interactives: " << interactive << endl << endl << endl;
